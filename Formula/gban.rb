@@ -21,11 +21,18 @@ class Gban < Formula
   end
 
   test do
-    # Two claims, and the second is the one worth making. `--help` proves the entry point
-    # resolves; `whoami` against a server that does not exist proves the binary RUNS — it
-    # reaches the network layer and fails there, rather than dying on an import.
-    assert_match "the human at a terminal", shell_output("#{bin}/gban --help")
+    # A SHORT phrase, deliberately. argparse re-wraps the description to the terminal width,
+    # so a long assertion passes at one width and fails at another — and the first version of
+    # this test asserted "the human at a terminal" against help text that says "for a human",
+    # which is the other way to get this wrong.
+    assert_match "Graphban client", shell_output("#{bin}/gban --help")
+
+    # Exit 3 is `gban`'s no-session code. It proves the binary STARTS: it resolved its entry
+    # point, read its config directory and reported the absence in its own words, rather than
+    # dying on an import or a missing module. It does NOT reach the network — the session
+    # check comes first — so the unreachable address here is only a guarantee that nothing
+    # this test does can touch a real server.
     output = shell_output("#{bin}/gban --server http://127.0.0.1:1 whoami 2>&1", 3)
-    assert_match(/could not reach|session expired/, output)
+    assert_match "gban login", output
   end
 end
