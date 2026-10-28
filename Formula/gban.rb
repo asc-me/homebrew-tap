@@ -10,8 +10,8 @@ class Gban < Formula
 
   desc "Graphban client for the human at a terminal"
   homepage "https://github.com/asc-me/graphban"
-  url "https://files.pythonhosted.org/packages/67/37/1e5d3c282e4f37607f7cfe4e80170771b91448502660c9d2df32e93910f7/graphban_cli-0.8.1.tar.gz"
-  sha256 "6a095d305766f62b8f98b19e08c713ea0be5d48a6c2131cd50a99114b6e417be"
+  url "https://files.pythonhosted.org/packages/ae/83/23e69073e0bbae6fb89cc061032c61e3ab51b071d191c35f7998a673e771/graphban_cli-0.8.2.tar.gz"
+  sha256 "5651b9de2adfeb6cf0b92e8e8104c987aa92c33eba2cc98fe74b5d160f6fa6c6"
   license "Apache-2.0"
 
   depends_on "python@3.12"
